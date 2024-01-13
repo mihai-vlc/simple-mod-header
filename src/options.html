@@ -20,7 +20,11 @@
                 >).
             </p>
             <textarea id="input-host-permissions" hidden></textarea>
-            <div class="editor-container js-editor" data-target="#input-host-permissions"></div>
+            <div
+                class="editor-container js-editor"
+                data-value-target="#input-host-permissions"
+                data-save-target="#grant-host-permissions"
+            ></div>
             <button class="button" id="grant-host-permissions">Grant host permissions</button>
             <button class="button" id="reset-host-permissions">Reset host permissions</button>
             <output id="status-host-permissions"></output>
@@ -37,7 +41,11 @@
                 >).
             </p>
             <textarea id="input-dynamic-rules" hidden></textarea>
-            <div class="editor-container js-editor" data-target="#input-dynamic-rules"></div>
+            <div
+                class="editor-container js-editor"
+                data-value-target="#input-dynamic-rules"
+                data-save-target="#save-dynamic-rules"
+            ></div>
             <button class="button" id="save-dynamic-rules">Save</button>
             <output id="status-dynamic-rules"></output>
         </fieldset>
@@ -55,7 +63,11 @@
                 >).
             </p>
             <textarea id="input-session-rules" hidden></textarea>
-            <div class="editor-container js-editor" data-target="#input-session-rules"></div>
+            <div
+                class="editor-container js-editor"
+                data-value-target="#input-session-rules"
+                data-save-target="#save-session-rules"
+            ></div>
             <button class="button" id="save-session-rules">Save</button>
             <output id="status-session-rules"></output>
         </fieldset>

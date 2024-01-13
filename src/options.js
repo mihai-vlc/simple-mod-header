@@ -48,7 +48,9 @@ function initializePrefHandlerForDynamicDNR() {
                 removeRuleIds: oldRules.map((rule) => rule.id),
                 addRules: newRules,
             });
-            statusOutput.value = `Saved ${newRules.length} rules`;
+            statusOutput.value = `Saved ${
+                newRules.length
+            } rules at ${new Date().toLocaleTimeString()}`;
         } catch (e) {
             statusOutput.value = `Failed to save rules: ${e}`;
         }
@@ -70,7 +72,9 @@ function initializePrefHandlerForSessionDNR() {
                 removeRuleIds: oldRules.map((rule) => rule.id),
                 addRules: newRules,
             });
-            statusOutput.value = `Saved ${newRules.length} rules`;
+            statusOutput.value = `Saved ${
+                newRules.length
+            } rules  at ${new Date().toLocaleTimeString()}`;
         } catch (e) {
             statusOutput.value = `Failed to save rules: ${e}`;
         }

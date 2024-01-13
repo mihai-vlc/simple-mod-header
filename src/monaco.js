@@ -19,8 +19,10 @@ self.MonacoEnvironment = {
 };
 
 document.querySelectorAll(".js-editor").forEach((el) => {
-    const target = el.getAttribute("data-target");
-    const targetElement = document.querySelector(target);
+    const valueElement = document.querySelector(el.getAttribute("data-value-target"));
+    const saveElement = document.querySelector(el.getAttribute("data-save-target"));
+    console.log(saveElement);
+
     const editor = monaco.editor.create(el, {
         language: "json",
         theme: "vs-dark",
@@ -28,13 +30,18 @@ document.querySelectorAll(".js-editor").forEach((el) => {
         fontSize: "20px",
     });
 
-    editor.setValue(targetElement.value);
+    editor.setValue(valueElement.value);
 
     editor.onDidChangeModelContent(function () {
-        targetElement.value = editor.getValue();
+        valueElement.value = editor.getValue();
     });
 
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function () {
-        console.log("SAVE pressed!");
+    editor.addAction({
+        id: "save",
+        label: "save",
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
+        run: function () {
+            saveElement.click();
+        },
     });
 });

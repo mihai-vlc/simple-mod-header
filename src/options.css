@@ -1,6 +1,5 @@
-/* src/options.css */
 :root {
-    color-scheme: dark;
+    color-scheme: light;
 }
 
 body {
@@ -34,4 +33,5 @@ body {
     margin-top: 1rem;
     border: 1px solid currentColor;
     cursor: pointer;
+    background-color: transparent;
 }
