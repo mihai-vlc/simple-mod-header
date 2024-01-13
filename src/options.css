@@ -1,0 +1,20 @@
+:root {
+    color-scheme: dark;
+}
+
+.input-and-buttons legend {
+    font-weight: bold;
+}
+.input-and-buttons textarea {
+    display: block;
+    width: 100%;
+    min-height: 20em;
+}
+
+.editor-container {
+    min-height: 300px;
+}
+
+[hidden] {
+    display: none !important;
+}

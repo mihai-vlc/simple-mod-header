@@ -1,0 +1,9 @@
+{
+    "name": "simple-mod-header",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "Simple add free mod header",
+    "permissions": ["declarativeNetRequestWithHostAccess"],
+    "optional_host_permissions": ["<all_urls>"],
+    "options_page": "options.html"
+}
