@@ -18,10 +18,70 @@ self.MonacoEnvironment = {
     },
 };
 
+const snippets = [
+    {
+        label: "Set response header",
+        documentation: "Set value for a response header",
+        insertText: `{
+  "id": 1,
+  "priority": 1,
+  "action": {
+    "type": "modifyHeaders",
+    "responseHeaders": [
+      {
+        "header": "content-type",
+        "operation": "set",
+        "value": "text/plain"
+      }
+    ]
+  },
+  "condition": {
+    "resourceTypes": [
+      "main_frame"
+    ],
+    "urlFilter": "*csv"
+  }
+}`,
+    },
+    {
+        label: "Redirect by regex",
+        description: "Redirect by regex",
+        insertText: `{
+  "id": 4,
+  "condition": {
+    "regexFilter": "^https?://([^?]+)$",
+    "requestDomains": ["example.com"],
+    "resourceTypes": ["main_frame"]
+  },
+  "action": {
+    "type": "redirect",
+    "redirect": {
+      "regexSubstitution": "https://\\\\1?redirected_by_regex"
+    }
+  }
+}`,
+    },
+];
+// https://github.com/mdn/webextensions-examples/blob/main/dnr-redirect-url/redirect-rules.json
+
+monaco.languages.registerCompletionItemProvider("json", {
+    provideCompletionItems: () => {
+        // we need to build a new list of objects each time we provide a completion
+        const monacoSnippets = snippets.map((s) => {
+            return {
+                ...s,
+                kind: monaco.languages.CompletionItemKind.Snippet,
+            };
+        });
+        return {
+            suggestions: monacoSnippets.map((s) => Object.assign({}, s)),
+        };
+    },
+});
+
 document.querySelectorAll(".js-editor").forEach((el) => {
     const valueElement = document.querySelector(el.getAttribute("data-value-target"));
     const saveElement = document.querySelector(el.getAttribute("data-save-target"));
-    console.log(saveElement);
 
     const editor = monaco.editor.create(el, {
         language: "json",
