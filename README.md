@@ -24,3 +24,16 @@ Go to the extension options and set the declarative rules to be:
     }
 ]
 ```
+
+## Development
+
+```shell
+
+npm install
+
+# build dist folder
+npm run build
+
+# build dist folder in watch mode
+npm run dev
+```

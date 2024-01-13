@@ -9,7 +9,7 @@
         "lint": "eslint ."
     },
     "keywords": [],
-    "author": "",
+    "author": "Mihai Ionut Vilcu",
     "license": "ISC",
     "devDependencies": {
         "esbuild": "0.19.11",

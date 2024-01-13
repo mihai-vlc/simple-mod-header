@@ -25,6 +25,7 @@ document.querySelectorAll(".js-editor").forEach((el) => {
         language: "json",
         theme: "vs-dark",
         automaticLayout: true,
+        fontSize: "20px",
     });
 
     editor.setValue(targetElement.value);
@@ -33,7 +34,7 @@ document.querySelectorAll(".js-editor").forEach((el) => {
         targetElement.value = editor.getValue();
     });
 
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function () {
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function () {
         console.log("SAVE pressed!");
     });
 });

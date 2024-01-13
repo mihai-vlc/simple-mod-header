@@ -1,23 +1,37 @@
+/* src/options.css */
 :root {
     color-scheme: dark;
+}
+
+body {
+    font-size: 1.5rem;
 }
 
 .input-and-buttons legend {
     font-weight: bold;
 }
+
 .input-and-buttons textarea {
     display: block;
     width: 100%;
-    min-height: 20em;
 }
 
 .editor-container {
-    min-height: 300px;
+    min-height: 25lh;
 }
+
 .monaco-editor {
     position: absolute !important;
 }
 
 [hidden] {
     display: none !important;
+}
+
+.button {
+    padding: 5px 20px;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid currentColor;
+    cursor: pointer;
 }
