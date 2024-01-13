@@ -1,4 +1,7 @@
 import * as esbuild from "esbuild";
+import { rimrafSync } from "rimraf";
+
+rimrafSync("dist/");
 
 const workerEntryPoints = [
     "vs/language/json/json.worker.js",
@@ -8,20 +11,52 @@ const workerEntryPoints = [
     "vs/editor/editor.worker.js",
 ];
 
-await esbuild.build({
+const monacoWorkers = await esbuild.context({
+    logLevel: "info",
     entryPoints: workerEntryPoints.map((entry) => `node_modules/monaco-editor/esm/${entry}`),
     bundle: true,
     format: "iife",
     outbase: "node_modules/monaco-editor/esm/",
-    outdir: "src/monaco",
+    outdir: "dist/monaco",
 });
 
-await esbuild.build({
+const monacoEditor = await esbuild.context({
+    logLevel: "info",
     entryPoints: ["src/monaco.js"],
     bundle: true,
     format: "iife",
-    outdir: "src/monaco",
+    outdir: "dist/monaco",
     loader: {
         ".ttf": "file",
     },
 });
+
+const optionsPage = await esbuild.context({
+    logLevel: "info",
+    entryPoints: ["src/options.js", "src/options.css", "src/options.html", "src/manifest.json"],
+    bundle: true,
+    format: "iife",
+    outdir: "dist/",
+    assetNames: "[name]",
+    loader: {
+        ".html": "copy",
+        ".json": "copy",
+    },
+});
+
+const args = process.argv.slice(2);
+
+if (args[0] == "watch") {
+    await monacoWorkers.rebuild();
+    await monacoEditor.watch();
+    await optionsPage.watch();
+    console.log("starting watch mode...");
+} else {
+    await monacoWorkers.rebuild();
+    await monacoEditor.rebuild();
+    await optionsPage.rebuild();
+    monacoWorkers.dispose();
+    monacoEditor.dispose();
+    optionsPage.dispose();
+    console.log("generated files in dist/ folder");
+}

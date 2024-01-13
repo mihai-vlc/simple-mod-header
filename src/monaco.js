@@ -24,11 +24,16 @@ document.querySelectorAll(".js-editor").forEach((el) => {
     const editor = monaco.editor.create(el, {
         language: "json",
         theme: "vs-dark",
+        automaticLayout: true,
     });
 
     editor.setValue(targetElement.value);
 
     editor.onDidChangeModelContent(function () {
         targetElement.value = editor.getValue();
+    });
+
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function () {
+        console.log("SAVE pressed!");
     });
 });

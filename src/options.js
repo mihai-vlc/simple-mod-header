@@ -1,5 +1,3 @@
-"use strict";
-
 if (typeof browser == "undefined") {
     // `browser` is not defined in Chrome, but Manifest V3 extensions in Chrome
     // also support promises in the `chrome` namespace, like Firefox. To easily
