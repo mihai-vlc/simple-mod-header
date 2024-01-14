@@ -25,49 +25,55 @@ const snippets = [
         label: "Set response header",
         documentation: "Set value for a response header",
         insertText: `{
-  "id": 1,
-  "priority": 1,
-  "action": {
-    "type": "modifyHeaders",
-    "responseHeaders": [
-      {
-        "header": "content-type",
-        "operation": "set",
-        "value": "text/plain"
-      }
-    ]
-  },
-  "condition": {
-    "resourceTypes": [
-      "main_frame"
-    ],
-    "urlFilter": "*csv"
-  }
+    "id": 1,
+    "priority": 1,
+    "action": {
+        "type": "modifyHeaders",
+        "responseHeaders": [
+            {
+                "header": "content-type",
+                "operation": "set",
+                "value": "text/plain"
+            }
+        ]
+    },
+    "condition": {
+        "resourceTypes": [
+            "main_frame"
+        ],
+        "urlFilter": "*csv"
+    }
 }`,
     },
     {
         label: "Redirect by regex",
         description: "Redirect by regex",
         insertText: `{
-  "id": 4,
-  "condition": {
-    "regexFilter": "^https?://([^?]+)$",
-    "requestDomains": ["example.com"],
-    "resourceTypes": ["main_frame"]
-  },
-  "action": {
-    "type": "redirect",
-    "redirect": {
-      "regexSubstitution": "https://\\\\1?redirected_by_regex"
+    "id": 4,
+    "condition": {
+        "regexFilter": "^https?://([^?]+)$",
+        "requestDomains": ["example.com"],
+        "resourceTypes": ["main_frame"]
+    },
+    "action": {
+        "type": "redirect",
+        "redirect": {
+            "regexSubstitution": "https://\\\\1?redirected_by_regex"
+        }
     }
-  }
 }`,
     },
 ];
 // https://github.com/mdn/webextensions-examples/blob/main/dnr-redirect-url/redirect-rules.json
 
 monaco.languages.registerCompletionItemProvider("json", {
-    provideCompletionItems: () => {
+    provideCompletionItems(model) {
+        if (!model.uri.path.endsWith("rules.json")) {
+            return {
+                suggestions: [],
+            };
+        }
+
         // we need to build a new list of objects each time we provide a completion
         const monacoSnippets = snippets.map((s) => {
             return {
@@ -85,14 +91,16 @@ document.querySelectorAll(".js-editor").forEach((el) => {
     const valueElement = document.querySelector(el.getAttribute("data-value-target"));
     const saveElement = document.querySelector(el.getAttribute("data-save-target"));
 
+    const modelUri = monaco.Uri.parse("file:///" + el.getAttribute("data-file-name"));
+    const model = monaco.editor.createModel(valueElement.value, "json", modelUri);
     const editor = monaco.editor.create(el, {
         language: "json",
         theme: "vs-dark",
         automaticLayout: true,
         fontSize: "20px",
+        renderWhitespace: "all",
+        model: model,
     });
-
-    editor.setValue(valueElement.value);
 
     editor.onDidChangeModelContent(function () {
         valueElement.value = editor.getValue();
@@ -120,4 +128,27 @@ document.querySelectorAll(".js-editor").forEach((el) => {
             }
         }
     });
+
+    const snippetsDropdown = el.parentElement.querySelector(".js-snippets-list");
+
+    if (snippetsDropdown) {
+        snippets.forEach((s) => {
+            var opt = document.createElement("option");
+            opt.value = s.label;
+            opt.innerHTML = s.label;
+            snippetsDropdown.appendChild(opt);
+        });
+
+        snippetsDropdown.addEventListener("change", () => {
+            const selectedSnippet = snippets.find((s) => s.label === snippetsDropdown.value);
+
+            if (selectedSnippet) {
+                editor.focus();
+                const snippetController = editor.getContribution("snippetController2");
+                snippetController.insert(selectedSnippet.insertText);
+                snippetsDropdown.value = "";
+                // snippetController.insert( "for (const ${2:defaultElement} of ${1:defaultArray}) {\n\tconsole.log(${2});\n}");
+            }
+        });
+    }
 });

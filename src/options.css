@@ -37,9 +37,14 @@ body {
     background: #007acc;
     border-right: 1px solid currentColor;
     border-left: 1px solid currentColor;
-    z-index: 10;
+    z-index: 100;
     display: flex;
     gap: 1rem;
+}
+
+.snippets-list {
+    background: #007acc;
+    border: none;
 }
 
 .vim-mode-label {

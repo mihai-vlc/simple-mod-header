@@ -24,6 +24,7 @@
                 <div class="editor-toolbar"></div>
                 <div
                     class="editor-container js-editor"
+                    data-file-name="host-permission.json"
                     data-value-target="#input-host-permissions"
                     data-save-target="#grant-host-permissions"
                 ></div>
@@ -59,6 +60,7 @@
             <div class="editor-main-wrapper">
                 <div
                     class="editor-container js-editor"
+                    data-file-name="dynamic-rules.json"
                     data-value-target="#input-dynamic-rules"
                     data-save-target="#save-dynamic-rules"
                 ></div>
@@ -74,6 +76,9 @@
                         VIM
                     </label>
                     <div class="js-vim-status-bar"></div>
+                    <select class="js-snippets-list snippets-list">
+                        <option value="">-- Snippet --</option>
+                    </select>
                     <output id="status-dynamic-rules"></output>
                 </div>
             </div>
@@ -96,6 +101,7 @@
             <div class="editor-main-wrapper">
                 <div
                     class="editor-container js-editor"
+                    data-file-name="session-rules.json"
                     data-value-target="#input-session-rules"
                     data-save-target="#save-session-rules"
                 ></div>
@@ -111,6 +117,9 @@
                         VIM
                     </label>
                     <div class="js-vim-status-bar"></div>
+                    <select class="js-snippets-list snippets-list">
+                        <option value="">-- Snippet --</option>
+                    </select>
                     <output id="status-session-rules"></output>
                 </div>
             </div>

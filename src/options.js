@@ -25,7 +25,7 @@ function initializePrefHandlerForHostPermissions() {
     };
 
     browser.permissions.getAll().then((permissions) => {
-        textarea.value = JSON.stringify(permissions.origins, null, 2);
+        textarea.value = JSON.stringify(permissions.origins, null, 4);
     });
 }
 
@@ -34,7 +34,7 @@ function serializeRules(rules) {
     // optional keys. For readability, we strip all optional keys.
     // JSON.stringify will drop keys if the replacer function returns undefined.
     const replacer = (key, value) => (value === null ? undefined : value);
-    return JSON.stringify(rules, replacer, 2);
+    return JSON.stringify(rules, replacer, 4);
 }
 
 function initializePrefHandlerForDynamicDNR() {
