@@ -17,6 +17,7 @@
         "rimraf": "^5.0.5"
     },
     "dependencies": {
-        "monaco-editor": "^0.45.0"
+        "monaco-editor": "^0.45.0",
+        "monaco-vim": "^0.4.1"
     }
 }

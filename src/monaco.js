@@ -1,4 +1,6 @@
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
+import DragBar from "./DragBar";
+import { initVimMode } from "monaco-vim";
 
 self.MonacoEnvironment = {
     getWorkerUrl: function (moduleId, label) {
@@ -103,5 +105,19 @@ document.querySelectorAll(".js-editor").forEach((el) => {
         run: function () {
             saveElement.click();
         },
+    });
+
+    new DragBar(el.parentElement.querySelector(".js-dragbar"), el);
+
+    let vimMode = null;
+
+    el.parentElement.querySelector(".js-vim-mode").addEventListener("change", (e) => {
+        if (e.target.checked) {
+            vimMode = initVimMode(editor, el.parentElement.querySelector(".js-vim-status-bar"));
+        } else {
+            if (vimMode) {
+                vimMode.dispose();
+            }
+        }
     });
 });

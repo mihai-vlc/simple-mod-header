@@ -20,14 +20,29 @@
                 >).
             </p>
             <textarea id="input-host-permissions" hidden></textarea>
-            <div
-                class="editor-container js-editor"
-                data-value-target="#input-host-permissions"
-                data-save-target="#grant-host-permissions"
-            ></div>
-            <button class="button" id="grant-host-permissions">Grant host permissions</button>
-            <button class="button" id="reset-host-permissions">Reset host permissions</button>
-            <output id="status-host-permissions"></output>
+            <div class="editor-main-wrapper">
+                <div class="editor-toolbar"></div>
+                <div
+                    class="editor-container js-editor"
+                    data-value-target="#input-host-permissions"
+                    data-save-target="#grant-host-permissions"
+                ></div>
+                <div class="js-dragbar dragbar" title="resize panel"></div>
+                <div class="editor-status-bar">
+                    <label class="vim-mode-label">
+                        <input
+                            type="checkbox"
+                            class="vim-mode-checkbox js-vim-mode"
+                            name="vim-mode-host"
+                        />
+                        VIM
+                    </label>
+                    <div class="js-vim-status-bar"></div>
+                    <output id="status-host-permissions"></output>
+                </div>
+            </div>
+            <button class="app-button" id="grant-host-permissions">Grant host permissions</button>
+            <button class="app-button" id="reset-host-permissions">Reset host permissions</button>
         </fieldset>
 
         <fieldset class="input-and-buttons">
@@ -41,13 +56,28 @@
                 >).
             </p>
             <textarea id="input-dynamic-rules" hidden></textarea>
-            <div
-                class="editor-container js-editor"
-                data-value-target="#input-dynamic-rules"
-                data-save-target="#save-dynamic-rules"
-            ></div>
-            <button class="button" id="save-dynamic-rules">Save</button>
-            <output id="status-dynamic-rules"></output>
+            <div class="editor-main-wrapper">
+                <div
+                    class="editor-container js-editor"
+                    data-value-target="#input-dynamic-rules"
+                    data-save-target="#save-dynamic-rules"
+                ></div>
+                <div class="js-dragbar dragbar" title="resize panel"></div>
+                <div class="editor-status-bar">
+                    <label class="vim-mode-label" for="vim-mode-dynamic">
+                        <input
+                            type="checkbox"
+                            class="vim-mode-checkbox js-vim-mode"
+                            name="vim-mode-dynamic"
+                            id="vim-mode-dynamic"
+                        />
+                        VIM
+                    </label>
+                    <div class="js-vim-status-bar"></div>
+                    <output id="status-dynamic-rules"></output>
+                </div>
+            </div>
+            <button class="app-button" id="save-dynamic-rules">Save</button>
         </fieldset>
 
         <fieldset class="input-and-buttons">
@@ -63,13 +93,28 @@
                 >).
             </p>
             <textarea id="input-session-rules" hidden></textarea>
-            <div
-                class="editor-container js-editor"
-                data-value-target="#input-session-rules"
-                data-save-target="#save-session-rules"
-            ></div>
-            <button class="button" id="save-session-rules">Save</button>
-            <output id="status-session-rules"></output>
+            <div class="editor-main-wrapper">
+                <div
+                    class="editor-container js-editor"
+                    data-value-target="#input-session-rules"
+                    data-save-target="#save-session-rules"
+                ></div>
+                <div class="js-dragbar dragbar" title="resize panel"></div>
+                <div class="editor-status-bar">
+                    <label class="vim-mode-label" for="vim-mode-session">
+                        <input
+                            type="checkbox"
+                            class="vim-mode-checkbox js-vim-mode"
+                            name="vim-mode-session"
+                            id="vim-mode-session"
+                        />
+                        VIM
+                    </label>
+                    <div class="js-vim-status-bar"></div>
+                    <output id="status-session-rules"></output>
+                </div>
+            </div>
+            <button class="app-button" id="save-session-rules">Save</button>
         </fieldset>
 
         <script type="module" src="./monaco/monaco.js"></script>
