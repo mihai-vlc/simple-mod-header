@@ -2,6 +2,14 @@
 
 Go to the extension options and set the declarative rules to be:
 
+Allowed host permissions:
+
+```json
+["<all_urls>"]
+```
+
+Dynamic rules:
+
 ```json
 [
     {
@@ -17,7 +25,7 @@ Go to the extension options and set the declarative rules to be:
         },
         "condition": {
             "resourceTypes": ["main_frame"],
-            "urlFilter": "*csv"
+            "urlFilter": "*csv|"
         },
         "id": 1,
         "priority": 1

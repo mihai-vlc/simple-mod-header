@@ -41,7 +41,7 @@ const snippets = [
         "resourceTypes": [
             "main_frame"
         ],
-        "urlFilter": "*csv"
+        "urlFilter": "*csv|"
     }
 }`,
     },
